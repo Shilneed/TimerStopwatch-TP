@@ -1,21 +1,32 @@
+import gui.HeadlessGUI;
 import gui.SwingGUI;
 import states.Context;
 
 public class ChronometerMain {
     
-	private SwingGUI g;
+    private HeadlessGUI g;
 	private Context c;
+
+    ChronometerMain() {}
+
+    ChronometerMain(HeadlessGUI gui, Context context) {
+        this.g = gui;
+        this.c = context;
+    }
    	
     // The method run() ensures that with a given frequency
     // the state machine's actions are executed with tick() and
     // the ui is updated accordingly with updateUIText().    
-	private void run(int frequency) {
+    void run(int frequency) {
         // infinite loop that asks the current state to do whatever it needs to do
         // and that updates the graphical user interface accordingly
  		  g.updateUI(c);
-    	  while (true) {
+        	 while (!Thread.currentThread().isInterrupted()) {
     		try { Thread.sleep(frequency); }
-    		catch (InterruptedException e) { e.printStackTrace(); }
+        		catch (InterruptedException e) {
+        			Thread.currentThread().interrupt();
+        			break;
+        		}
  	        g.updateUI(c);
  	        c.tick();
   	      }
