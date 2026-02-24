@@ -3,10 +3,10 @@ package states;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import states.stopwatch.ResetStopwatch;
 import states.timer.AbstractTimer;
 import states.timer.IdleTimer;
 import states.timer.SetTimer;
@@ -69,12 +69,10 @@ class IdleTest {
 		assertSame(SetTimer.Instance(), context.currentState.right());
 	}
 
-	@Disabled
+	@DisplayName("Left event from IdleTimer switches to stopwatch history state")
+	@Test
 	void testLeft() {
-		/* we cannot test the effect of the left() event here,
-		 * since it is defined in the superclass of the IdleTimer state.
-		 * It is tested in TimerTests.java.
-		 */
+		assertSame(ResetStopwatch.Instance(), context.currentState.left());
 	}
 
 }

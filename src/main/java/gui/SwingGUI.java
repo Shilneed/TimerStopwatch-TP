@@ -30,7 +30,7 @@ public class SwingGUI extends HeadlessGUI {
         myContent.add(b1);
         myContent.add(b2);
         myContent.add(b3);
-        myFrame.setSize(500, 500);
+        myFrame.setSize(1000, 1000);
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.setVisible(true);
     }
