@@ -11,6 +11,18 @@ public class RingingTimer extends ActiveTimer {
         if(instance == null) instance = new RingingTimer();        
         return instance;
     }
+
+    @Override
+    protected void entry() {
+        super.entry();
+        isRinging = true;
+    }
+
+    @Override
+    protected void exit() {
+        isRinging = false;
+        super.exit();
+    }
     
     @Override
     public ClockState doIt() {

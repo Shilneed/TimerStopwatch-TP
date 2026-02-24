@@ -1,10 +1,16 @@
 package states;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import states.timer.*;
 import states.stopwatch.AbstractStopwatch;
+import states.timer.AbstractTimer;
+import states.timer.ActiveTimer;
+import states.timer.IdleTimer;
+import states.timer.RunningTimer;
 
 class TimerTests {
 
@@ -17,6 +23,7 @@ class TimerTests {
         AbstractTimer.resetInitialValues();
 	}
 		
+	@DisplayName("Timer mode starts in IdleTimer with timer values at zero")
 	@Test
 	void testInitialState() {
 		/* When initialising the context (see setup() method above)
@@ -31,18 +38,21 @@ class TimerTests {
 	    assertEquals(0, AbstractTimer.getMemTimer(),"For the value of memTimer we ");
 	}
 	
+	@DisplayName("AbstractTimer initial state resolves to IdleTimer")
 	@Test
 	void testInitialAbstractTimer() {
 		// The initial state of composite state AbstractTimer should be IdleTimer
 		assertSame(AbstractTimer.Instance(), IdleTimer.Instance());
 	}
 	
+	@DisplayName("ActiveTimer initial state resolves to RunningTimer")
 	@Test
 	void testInitialActiveTimer() {
 		// The initial state of composite state ActiveTimer should be RunningTimer
 		assertSame(ActiveTimer.Instance(), RunningTimer.Instance());
 	}
 	
+	@DisplayName("History state restores previous timer state after mode switch")
 	@Test
 	void testHistoryState() {
 		current = AbstractTimer.Instance();

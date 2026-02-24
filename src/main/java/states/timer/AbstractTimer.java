@@ -1,7 +1,8 @@
 package states.timer;
 
-import states.*;
-import states.stopwatch.*;
+import states.ClockState;
+import states.Mode;
+import states.stopwatch.AbstractStopwatch;
 
 // Timer is a composite statechart
 // Subclasses of Timer correspond to the states contained in the composite
@@ -16,14 +17,17 @@ public abstract class AbstractTimer extends ClockState {
 	// need to be shared between all Timer substates.
 	protected static int timer;
 	protected static int memTimer;
+	protected static boolean isRinging;
 
     // these getters are needed for testing purposes
 	public static int getTimer() {return timer;}
 	public static int getMemTimer() {return memTimer;}
+	public static boolean isRinging() {return isRinging;}
 
 	public static void resetInitialValues() {
     	timer = 0;
     	memTimer = 0;
+		isRinging = false;
     }
 
 	// use Singleton design pattern

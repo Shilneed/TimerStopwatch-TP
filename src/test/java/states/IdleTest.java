@@ -1,9 +1,15 @@
 package states;
 
-import states.timer.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import states.timer.AbstractTimer;
+import states.timer.IdleTimer;
+import states.timer.SetTimer;
 
 class IdleTest {
 
@@ -18,6 +24,7 @@ class IdleTest {
 	}
 
 	//The following "regression test" was added after having found a bug in the code
+	@DisplayName("IdleTimer singleton instance matches context initial state")
 	@Test
 	void testSingletonDP() {
 		// the initial state of the statechart should be an IdleTimer object
@@ -25,6 +32,7 @@ class IdleTest {
 		assertSame(IdleTimer.Instance(),context.currentState);
 	}
 
+	@DisplayName("Up event in IdleTimer stays in IdleTimer when memTimer is zero")
 	@Test
 	void testUpNoTransition() {
 		/* test whether the up event leaves us in the IdleTimer state.
@@ -35,6 +43,7 @@ class IdleTest {
 		assertSame(context.currentState, context.currentState.up());		
 	}
 
+	@DisplayName("Prepared memTimer value allows transition path from IdleTimer")
 	@Test
 	void testUpWithTransition() {
 		/* test whether a series of events (and the corresponding transitions)
@@ -53,6 +62,7 @@ class IdleTest {
 		assertEquals(1, AbstractTimer.getMemTimer(),"For the value of timer we ");
 		}
 
+	@DisplayName("Right event from IdleTimer transitions to SetTimer")
 	@Test
 	void testRight() {
 		// test whether the right() event brings us to the SetTimer state

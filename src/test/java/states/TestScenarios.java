@@ -1,10 +1,21 @@
 package states;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import states.stopwatch.*;
-import states.timer.*;
+import states.stopwatch.AbstractStopwatch;
+import states.stopwatch.LaptimeStopwatch;
+import states.stopwatch.ResetStopwatch;
+import states.stopwatch.RunningStopwatch;
+import states.timer.AbstractTimer;
+import states.timer.IdleTimer;
+import states.timer.PausedTimer;
+import states.timer.RingingTimer;
+import states.timer.RunningTimer;
+import states.timer.SetTimer;
 
 class TestScenarios {
 
@@ -19,6 +30,7 @@ class TestScenarios {
     }
     
   //This is more a kind of integration test than a real unit test	
+	@DisplayName("Complete timer-stopwatch scenario preserves transitions and data")
   @Test
   void completeScenario() {
 	  assertEquals(IdleTimer.Instance(),c.currentState);

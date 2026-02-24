@@ -1,9 +1,15 @@
 package gui;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import states.timer.*;
+import states.timer.AbstractTimer;
+import states.timer.IdleTimer;
+import states.timer.PausedTimer;
+import states.timer.RingingTimer;
+import states.timer.RunningTimer;
+import states.timer.SetTimer;
 
 class TestTimerLabels extends TestGUIAbstract {
 
@@ -16,6 +22,7 @@ class TestTimerLabels extends TestGUIAbstract {
 		assertEquals(g.b2.getText(),c.getUpText(),"button 2 for state " + stateName);
 		assertEquals(g.b3.getText(),c.getRightText(),"button 3 for state " + stateName);
 	}
+	@DisplayName("All timer states expose button labels consistent with context texts")
 	@Test
 	void testIdleTimerLabels() {
 		assertTimerLabels(IdleTimer.Instance());
@@ -25,6 +32,7 @@ class TestTimerLabels extends TestGUIAbstract {
 		assertTimerLabels(SetTimer.Instance());
 	}
 
+	@DisplayName("Idle timer UI shows default labels and values")
    @Test
    void testTimerButtonLabels1() {
 		g.updateUI(c);
@@ -36,6 +44,7 @@ class TestTimerLabels extends TestGUIAbstract {
 		assertEquals("memTimer = 0",g.myText1.getText());
 	};
 
+	@DisplayName("Set timer UI shows increment and confirm actions")
 	@Test
 	void testTimerButtonLabels2() {
 		c.right(); //simulate clicking on the left button
@@ -48,6 +57,7 @@ class TestTimerLabels extends TestGUIAbstract {
 		assertEquals("memTimer = 0",g.myText1.getText());
 	}
 
+	@DisplayName("Switching to stopwatch mode shows reset stopwatch labels")
 	@Test
 	void testStopwatchButtonLabels1() {
 		c.left(); //simulate clicking on the left button
@@ -57,6 +67,7 @@ class TestTimerLabels extends TestGUIAbstract {
 		assertEquals("(unused)",g.b3.getText());
 	}
 
+	@DisplayName("Running stopwatch mode shows split and reset button labels")
 	@Test
 	void testStopwatchButtonLabels2() {
 		c.left(); //simulate clicking on the left button

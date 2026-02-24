@@ -1,11 +1,14 @@
 package states;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import states.stopwatch.AbstractStopwatch;
 import states.stopwatch.ResetStopwatch;
 import states.timer.AbstractTimer;
-
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class StopwatchTests {
 
@@ -19,6 +22,7 @@ class StopwatchTests {
         context.currentState = AbstractStopwatch.Instance();
 	}
 		
+	@DisplayName("Stopwatch mode starts in ResetStopwatch with zeroed counters")
 	@org.junit.jupiter.api.Test
 	void testInitialState() {
 		//context.tick(); //no tick() needed for this test;
@@ -34,12 +38,14 @@ class StopwatchTests {
 	    assertEquals(0, AbstractStopwatch.getLapTime(),"For the value of lapTime we ");
 	}
 
+	@DisplayName("AbstractStopwatch initial state resolves to ResetStopwatch")
 	@org.junit.jupiter.api.Test
 	void testInitialAbstractStopwatch() {
 		// The initial state of composite state AbstractStopwatch should be ResetStopwatch
 		assertSame(AbstractStopwatch.Instance(), ResetStopwatch.Instance());
 	}
 	
+	@DisplayName("History state restores previous stopwatch state after mode switch")
 	@Test
 	void testHistoryState() {
 		current = AbstractStopwatch.Instance();

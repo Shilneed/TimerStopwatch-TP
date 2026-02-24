@@ -1,10 +1,12 @@
 package gui;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class TestStopwatchLabels extends TestGUIAbstract {
 
+	@DisplayName("Stopwatch reset state shows default button labels and texts")
     @Test
 	void testStopwatch1() {
     	c.left(); //simulate clicking on the left button
@@ -17,6 +19,7 @@ class TestStopwatchLabels extends TestGUIAbstract {
     	assertEquals("ResetStopwatch",g.myText3.getText());
     }
 
+	@DisplayName("Running stopwatch state shows split and reset actions")
     @Test
 	void testStopwatch2() {
     	c.left(); //simulate clicking on the left button

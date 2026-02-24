@@ -1,11 +1,11 @@
 package gui;
 
-import states.Context;
-import states.EventListener;
-
-import javax.swing.JFrame;
 import java.awt.Container;
 import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+
+import states.EventListener;
 
 /**
  * @author tommens
@@ -30,7 +30,7 @@ public class SwingGUI extends HeadlessGUI {
         myContent.add(b1);
         myContent.add(b2);
         myContent.add(b3);
-        myFrame.pack();
+        myFrame.setSize(500, 500);
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.setVisible(true);
     }
